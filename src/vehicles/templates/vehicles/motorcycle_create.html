@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Ajouter une moto</title>
+{% endblock %}
+
+
+{% block content %}
+<div id="pupassure-form">
+  <h1>Enregistrement d'une nouvelle moto</h1>
+  <p class="subtitle">Ajoutez les informations nécessaires pour enregistrer une nouvelle moto dans le système.</p>
+  
+  <form method="post" enctype="multipart/form-data">
+    {#enctype="multipart/form-data"  => pour permettre l'envoi de fichiers (uploader)#}
+    {% csrf_token %}
+    
+    <div class="form-section">
+      <div class="field-group">
+        {{ form.brand.label_tag }}
+        {{ form.brand }}
+      </div>
+      <div class="field-group">
+        {{ form.model.label_tag }}
+        {{ form.model }}
+      </div>
+      <div class="field-group">
+        {{ form.color.label_tag }}
+        {{ form.color }}
+      </div>
+      <div class="field-group">
+        {{ form.registrationNumber.label_tag }}
+        {{ form.registrationNumber }}
+      </div>
+      <div class="field-group">
+        {{ form.capacity.label_tag }}
+        {{ form.capacity }}
+      </div>
+ 
+     
+    </div>
+        
+    <hr class="separator">
+    
+    <div class="form-section">
+      <h2 class="section-title">Veuillez charger votre carte grise</h2>
+      <div class="field-group">
+        {{ form.registration_certificate.label_tag }}
+        {{ form.registration_certificate }}
+      </div>
+    </div>
+    
+    <div class="form-navigation">
+        <a href="{% url 'create-vehicle' %}">
+      <button type="button" class="nav-button back-button">Retour</button>
+      </a>
+      <button type="submit" class="nav-button next-button">Enrégistrer</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

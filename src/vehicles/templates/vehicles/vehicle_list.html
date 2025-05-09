@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="text-center">
+  
+    <div class="card-body">
+      <h5 class="card-title">Liste des véhicules enregistrés</h5>
+      <p class="card-text">Consultez ci-dessous les véhicules enregistrés pour un lavage.</p>
+    
+      
+    </div>
+    
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary nav-button back-button">
+        <i class="fas fa-arrow-left me-1"></i> Retour à l'accueil
+    </a>
+    <a href="{% url 'create-vehicle' %}" class="btn btn-outline-primary me-2 nav-button bg-primary text-light">
+        <i class="fas fa-list me-1"></i> Enrégistrer un nouveau véhicule
+    </a>
+</div>
+<div class="container mt-5">
+
+    {% if vehicles %}
+      
+        <h2>Vos voitures</h2>
+        {% include "vehicles/car_list.html" with cars=cars %}
+        <div>
+            <br>
+        </div>
+        <h2>Vos motos</h2>
+        {% include "vehicles/motorcycle_list.html" with motorcycles=motorcycles %}
+
+
+
+
+    {% else %}
+        <div class="alert alert-warning text-center">
+            Aucun véhicule enregistré pour le moment.
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

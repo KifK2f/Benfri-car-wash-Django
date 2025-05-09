@@ -1,0 +1,37 @@
+{% if cars %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for car in cars %}
+            <div class="col">
+                <div class="card h-100 shadow border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-car fa-4x text-primary"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-dark">{{ car.brand }}</h5>
+                        <p class="text-muted mb-1"><strong>Modèle :</strong> {{ car.model }}</p>
+                        <p class="text-muted mb-1"><strong>Couleur :</strong> {{ car.color }}</p>
+                        <p class="text-muted mb-1"><strong>Immatriculation :</strong> {{ car.registrationNumber }}</p>
+                        <p class="text-muted mb-1"><strong>Ajoutée le :</strong> {{ car.created_on }}</p>
+                        <p class="text-muted mb-1"><strong>Mis à jour :</strong> {{ car.last_updated }}</p>
+                        <p class="text-muted mb-2"><strong>Propriétaire :</strong> {{ car.customer }}</p>
+                        {% if customers %}
+                        <p class="text-muted mb-2"><strong>Propriétaire(client) :</strong> {{ customers.last_name }}</p>
+                        {% endif %}    
+                        {% if customers %}
+                        {% for customer in customers %}
+                        <p class="text-muted mb-2"><strong>Propriétaire(client) :</strong> {{ customer.first_name }}</p>
+                        {% endfor %}
+                        {% endif %}
+                        <a href="{% url 'car' slug=car.slug %}" class="btn btn-primary btn-sm rounded-pill mt-3">
+                            <i class="fas fa-eye me-1"></i> Voir détails
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-warning text-center mt-4">
+        Aucune voiture enregistrée pour le moment.
+    </div>
+{% endif %}

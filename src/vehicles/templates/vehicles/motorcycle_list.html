@@ -1,0 +1,29 @@
+{% if motorcycles %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for motorcycle in motorcycles %}
+            <div class="col">
+                <div class="card h-100 shadow border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-car fa-4x text-primary"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-dark">{{ motorcycle.brand }}</h5>
+                        <p class="text-muted mb-1"><strong>Modèle :</strong> {{ motorcycle.model }}</p>
+                        <p class="text-muted mb-1"><strong>Couleur :</strong> {{ motorcycle.color }}</p>
+                        <p class="text-muted mb-1"><strong>Immatriculation :</strong> {{ motorcycle.registrationNumber }}</p>
+                        <p class="text-muted mb-1"><strong>Ajoutée le :</strong> {{ motorcycle.created_on }}</p>
+                        <p class="text-muted mb-1"><strong>Mis à jour :</strong> {{ motorcycle.last_updated }}</p>
+                        <p class="text-muted mb-2"><strong>Propriétaire :</strong> {{ motorcycle.customer }}</p>
+                        <a href="{% url 'motorcycle' slug=motorcycle.slug %}" class="btn btn-primary btn-sm rounded-pill mt-3">
+                            <i class="fas fa-eye me-1"></i> Voir détails
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-warning text-center mt-4">
+        Aucune moto enregistrée pour le moment.
+    </div>
+{% endif %}
