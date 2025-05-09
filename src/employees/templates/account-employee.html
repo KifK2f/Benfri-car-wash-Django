@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% if employees %}
+{% for employee in employees %}
+
+<div class="min-vh-100 d-flex flex-column align-items-center justify-content-center bg-light">
+    <div class="text-center mt-4">
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary nav-button back-button bg-success">
+            <i class="fas fa-arrow-left me-1"></i> Retour à l'accueil
+        </a>
+        <a href="{% url 'edit-employee' slug=employee.slug %}" class="btn btn-outline-secondary nav-button back-button bg-warning">
+            <i class="fas fa-arrow-left me-1"></i> Modifier compte Employé
+        </a>
+        <a href="{% url 'delete-employee' slug=employee.slug %}" class="btn btn-outline-secondary nav-button back-button">
+            <i class="fas fa-arrow-left me-1"></i> Supprimer compte Employé
+        </a>
+    </div>    
+    <div class="container">
+      <br> <br>
+    </div>
+    <div class="container w-50">
+      <div class="card shadow-lg border-0 p-4 text-center rounded-4 position-relative">
+ 
+        <div class="position-absolute top-0 start-50 translate-middle mt-4">
+          {% if employee.profile_picture %}
+          <img src="{{ employee.profile_picture.url }}" alt="Profile"
+            class="rounded-circle border border-white shadow" width="100" height="100">
+        {% else %}
+          <img src="{% static 'images/avatar.jpeg' %}" alt="Profile"
+            class="rounded-circle border border-white shadow" width="100" height="100">
+            {% endif %}
+          
+        </div>
+  
+        <div class="pt-5 mt-5">
+          <h4 class="mb-1"> {{ employee.last_name }} {{ employee.first_name }}</h4>
+          <p class="text-muted small mb-2">Rôle : {{ employee.get_role_display }}</p>
+          <p class="text-muted small mb-2">Sexe : {{ employee.get_sex_display }}</p>
+          <p class="text-muted small mb-2">Email : {{ employee.email }}</p>
+          <p class="text-muted small mb-2">Date de naissance : {{ employee.birth_date }}</p>
+          <p class="text-muted small mb-2">Numéro de téléphone : {{ employee.phone_number }}</p>
+          <p class="text-muted small mb-2">Adresse : {{ employee.address }}</p>
+          <p class="text-muted small mb-2">Dernière mise à jour : {{ employee.last_updated }}</p>
+          <p class="text-muted small mb-2">Date de création : {{ employee.created_on }}</p>
+            
+          <div class="d-flex justify-content-around mb-4 text-dark">
+            {% comment %} <div>
+              <span class="badge bg-success p-2 rounded-pill">
+                {{ employee.performance_point }} Point(s)
+              </span><br>
+              <small class="text-muted">Point(s) de performance</small>
+            </div>
+            {% if vehicles %}
+            {% for vehicle in vehicles %}
+             {% if vehicle.employee == user %}
+             <div><strong>{{vehicles}}</strong><br><small>Véhicule(s)</small></div>
+             {% endif %}
+            {% endfor %} 
+            {% else %}
+              <div><strong></strong><br><small>Véhicule(s)</small></div>
+            {% endif %}
+            <div><strong></strong><br><small>Réservation(s)</small></div> {% endcomment %}
+          </div>
+          
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  
+  <div class="text-center mt-4">
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary nav-button back-button">
+        <i class="fas fa-arrow-left me-1"></i> Retour à l'accueil
+    </a>
+    <a href="{% url 'create-employee' %}" class="btn btn-outline-primary me-2 nav-button bg-primary text-light">
+        <i class="fas fa-list me-1"></i> Créer un compte employé
+    </a>
+</div>
+  <div class="alert alert-warning text-center mt-4">
+      Aucun compte employé enregistrée pour le moment.
+  </div>
+{% endif %}
+{% endblock %}

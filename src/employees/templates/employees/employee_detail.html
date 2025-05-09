@@ -1,0 +1,54 @@
+{% comment %} {% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  <title>{{ car.name }} | Vos Voitures</title>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  
+  <div class="text-center mt-4">
+    <a href="{% url 'home-vehicle' %}" class="btn btn-outline-secondary nav-button back-button bg-success">
+      Voir mes véhicules
+    </a>
+    <a href="" class="btn btn-outline-secondary nav-button bg-primary text-light">
+      Réserver maintenant
+    </a>
+   </div>
+
+   <div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+      <div class="row g-4 align-items-start">
+        <!-- Image principale -->
+        <div class="col-md-5">
+          <a class="img-card d-block rounded-3 overflow-hidden shadow-sm" href="#">
+            <img src="{{ car.registration_certificate.url }}" alt="{{ car.brand }} {{ car.model }}" class="img-fluid w-100 h-100 object-fit-cover">
+          </a>
+        </div>
+
+        <!-- Informations -->
+        <div class="col-md-7">
+          <h2 class="text-primary">{{ car.brand }} {{ car.model }}</h2>
+          <p class="text-muted mb-2">Couleur : <strong>{{ car.color }}</strong> | Immatriculation : <strong>{{ car.registrationNumber }}</strong></p>
+          <p class="text-muted">Portes : <strong>{{ car.nb_doors }}</strong> | Places : <strong>{{ car.nb_places }}</strong></p>
+
+          <div class="mt-3 d-flex flex-wrap gap-2">
+            
+            <a href="{% url 'edit-car' slug=car.slug %}" class="btn btn-outline-secondary nav-button back-button bg-warning">
+              Modifier
+            </a>
+            <a href="{% url 'delete-car' slug=car.slug %}" class="btn btn-outline-secondary nav-button back-button">
+              Supprimer
+            </a>
+           
+          </div>
+
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% endcomment %}
