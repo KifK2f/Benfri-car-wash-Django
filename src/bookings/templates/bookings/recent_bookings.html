@@ -1,0 +1,120 @@
+{% if bookings %}
+<div class="container py-1">
+    <!-- Ticket Stats -->
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="card card-stat p-3">
+          <h5 class="card-title">En attente</h5>
+          <p>Nombre Total: {{number_bookings_statut_0}}</p>
+          {% comment %} <button class="btn btn-primary btn-sm">Détail</button> {% endcomment %}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-stat p-3">
+          <h5 class="card-title">Confirmé</h5>
+          <p>Nombre Total: {{number_bookings_statut_1}}</p>
+          {% comment %} <button class="btn btn-primary btn-sm">Détail</button> {% endcomment %}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-stat p-3">
+          <h5 class="card-title">En cours</h5>
+          <p>Nombre Total: {{number_bookings_statut_2}}</p>
+          {% comment %} <button class="btn btn-primary btn-sm">Détail</button> {% endcomment %}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-stat p-3">
+          <h5 class="card-title">Terminé</h5>
+          <p>Nombre Total: {{number_bookings_statut_3}}</p>
+          {% comment %} <button class="btn btn-primary btn-sm">Détail</button> {% endcomment %}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-stat p-3">
+          <h5 class="card-title">Annulé</h5>
+          <p>Nombre Total: {{number_bookings_statut_4}}</p>
+          {% comment %} <button class="btn btn-primary btn-sm">Détail</button> {% endcomment %}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-stat p-3">
+          <h5 class="card-title">Payé</h5>
+          <p>Nombre Total: {{number_bookings_statut_5}}</p>
+          {% comment %} <button class="btn btn-primary btn-sm">Détail</button> {% endcomment %}
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h4 class="text-center mt-3">Nombre total de réservations : {{ bookings|length }}</h4>
+      {% comment %} <button class="btn btn-primary btn-sm">Afficher plus</button> {% endcomment %}
+    </div>
+
+    <div class="table-container">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Référence</th>
+            <th>Date de Création</th>
+            {% comment %} <th>Date de lavage</th> {% endcomment %}
+            <th>statut</th>
+            <th>Agent d'accueil</th>
+            <th>Laveur</th>
+            <th>Client</th>
+            <th>Vehicule</th>
+            <th>Service</th>
+            <th>Prix</th>
+            {% comment %} <th>Action</th> {% endcomment %}
+            
+            <!-- Ajoute plus de colonnes ici -->
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in bookings %}
+          <tr>           
+              <td>{{booking.reference}}</td>
+              <td>{{booking.created_on}}</td>
+              {% comment %} <td>{{booking.washing_date}}</td> {% endcomment %}
+              <td>{{booking.get_status_display}}</td>
+              <td>{{booking.receptionist}}</td>
+              <td>{{booking.cleaner}}</td>
+              <td> {{booking.customer.last_name}} {{booking.customer.first_name}}</td>
+              <td>{{booking.vehicle}}</td>
+              <td>{{booking.service}}</td>
+              <td>{{booking.price}}</td>
+              {% comment %} <td>
+                  <a class="btn btn-sm btn-success mt-1" href="{% url 'edit-booking' slug=booking.slug %}" >Modifier status</a>
+              </td> {% endcomment %}
+              
+      
+              {% comment %} {% if booking.status == 0 %}
+<form method="post" action="{% url 'update_booking_status' booking.id %}">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="status">Mettre à jour le statut :</label>
+    <select name="status" class="form-control" required>
+      <option value="">Choisissez un statut</option>
+      <option value="1">Confirmé</option>
+      <option value="4">Annulé</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success mt-2">Mettre à jour</button>
+</form>
+{% endif %} {% endcomment %}
+
+
+            {% endfor %}
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+    {% else %}
+    <div class="alert alert-warning text-center">
+        Aucun réservation enregistré pour le moment.
+    </div> 
+{% endif %}

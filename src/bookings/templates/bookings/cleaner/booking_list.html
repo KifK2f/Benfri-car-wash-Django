@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Historique des reservations</title>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="text-center">
+  
+    <div class="card-body">
+      <h5 class="card-title">Historique des reservations</h5>
+      <p class="card-text">Consultez ci-dessous les réservations enregistrées.</p>
+    
+      
+    </div>
+    
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary nav-button back-button">
+        <i class="fas fa-arrow-left me-1"></i> Retour à l'accueil
+    </a>
+    {% comment %} <a href="{% url 'create-booking' %}" class="btn btn-outline-primary me-2 nav-button bg-primary text-light">
+        <i class="fas fa-list me-1"></i> Enrégistrer une nouvelle réservation
+    </a> {% endcomment %}
+</div>
+<div class="container mt-5">
+
+    {% if bookings %}
+        {% comment %} {% for booking in bookings %}
+            {{booking.cleaner}}
+        {% endfor %} {% endcomment %}
+      
+
+        {% include "bookings/recent_bookings.html" %}
+
+        {% comment %} <div class="table-container">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Référence</th>
+                  <th>Date de Création</th>
+                  <th>Date de lavage</th>
+                  <th>statut</th>
+                  <th>Agent d'accueil</th>
+                  <th>Laveur</th>
+                  <th>Client</th>
+                  <th>Vehicule</th>
+                  <th>Service</th>
+                  <th>Prix
+                  
+                  <!-- Ajoute plus de colonnes ici -->
+                </tr>
+              </thead>
+              <tbody>
+                {% for booking in bookings %}
+                <tr>           
+                    <td>{{booking.reference}}</td>
+                    <td>{{booking.created_on}}</td>
+                    <td>{{booking.washing_date}}</td>
+                    <td>{{booking.get_status_display}}</td>
+                    <td>{{booking.receptionist}}</td>
+                    <td>{{booking.cleaner}}</td>
+                    <td> {{booking.customer.last_name}} {{booking.customer.first_name}}</td>
+                    <td>{{booking.vehicle}}</td>
+                    <td>{{booking.service}}</td>
+                    <td>{{booking.price}}</td>
+            
+                  {% endfor %}
+      
+                </tr>
+              </tbody>
+            </table>
+          </div> {% endcomment %}
+
+
+        {% comment %} <h2>Vos voitures</h2>
+        {% include "bookings/car_list.html" with cars=cars %}
+        <div>
+            <br>
+        </div>
+        <h2>Vos motos</h2>
+        {% include "bookings/motorcycle_list.html" with motorcycles=motorcycles %} {% endcomment %}
+        
+
+        
+
+
+    {% else %}
+        <div class="alert alert-warning text-center">
+            Aucun réservation enregistré pour le moment.
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Editer une réservation</title>
+{% endblock %}
+
+
+{% block content %}
+<div id="pupassure-form">
+  <h1>Editer une réservation</h1>
+  <p class="subtitle">Modifier les informations d'une réservation</p>
+  
+
+  
+  <form method="post">
+    {#enctype="multipart/form-data"  => pour permettre l'envoi de fichiers (uploader)#}
+    {% csrf_token %}
+    
+    <div class="form-section">
+      <div class="field-group">
+        {{ form.status.label_tag }}
+        {{ form.status }}
+      </div>
+    </div>
+    
+    <div class="form-navigation">
+        <a href="{% url 'account-employee' %}">
+      <button type="button" class="nav-button back-button">Retour</button>
+      </a>
+      <button type="submit" class="nav-button next-button">Editer</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

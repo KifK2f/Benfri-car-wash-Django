@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Ajouter une réservation</title>
+{% endblock %}
+
+
+{% block content %}
+{% comment %} <div id="pupassure-form">
+  <h1>Création d'une nouvelle réservation</h1>
+  <p class="subtitle">Ajoutez les informations nécessaires pour enregistrer une nouvelle réservation dans le système.</p>
+  
+  <form method="post" enctype="multipart/form-data">
+    {#enctype="multipart/form-data"  => pour permettre l'envoi de fichiers (uploader)#}
+    {% csrf_token %}
+    
+    <div class="form-section">
+      <div class="field-group">
+        {{ form.washing_date.label_tag }}
+        {{ form.washing_date }}
+      </div>
+      <div class="field-group">
+        {{ form.status.label_tag }}
+        {{ form.status }}
+      </div>
+      <div class="field-group">
+        {{ form.receptionist.label_tag }}
+        {{ form.receptionist }}
+      </div>
+      <div class="field-group">
+        {{ form.cleaner.label_tag }}
+        {{ form.cleaner }}
+      </div>
+      <div class="field-group">
+        {{ form.customer.label_tag }}
+        {{ form.customer }}
+      </div>
+      <div class="field-group">
+        {{ form.vehicle.label_tag }}
+        {{ form.vehicle }}
+      </div>
+      <div class="field-group">
+        {{ form.service.label_tag }}
+        {{ form.service }}
+      </div>
+      
+     
+    </div>
+    
+    <div class="form-navigation">
+        <a href="{% url 'account-employee' %}">
+      <button type="button" class="nav-button back-button">Retour</button>
+      </a>
+      <button type="submit" class="nav-button next-button">Enregister</button>
+    </div>
+  </form>
+</div> {% endcomment %} 
+
+{% comment %} creation de reservation {% endcomment %}
+<form method="post" enctype="multipart/form-data" id="bookingForm" data-vehicles-url="{% url 'ajax_load_vehicles' %}" novalidate>
+{% comment %} <form method="post" enctype="multipart/form-data"> {% endcomment %}
+  {% csrf_token %}
+  <div class="reservation-container" style="background-image: url('{% static '/images/booking1234.jpg' %}');   background-size: cover;
+  background-position: left; width:100%; "> 
+      <div class="reservation-image-side mx-3 mt-5">
+          <!-- Image de fond -->
+      </div>
+      
+      <div class="reservation-form-side mx-5 mt-2 bg-primary">
+          <h2 style="color:white;">Enregister votre Réservation</h2>
+          <div class="reservation-form-grid">
+              {% comment %} <div class="reservation-form-group">
+                {{ form.washing_date.label_tag }}
+                {{ form.washing_date }}
+              </div> {% endcomment %}
+
+              {% comment %} <div class="reservation-form-group">
+                {{ form.status.label_tag }}
+                {{ form.status }}
+              </div> {% endcomment %}
+
+              <div class="reservation-form-group">
+                {{ form.receptionist.label_tag }}
+                {{ form.receptionist }}
+              </div>
+
+              <div class="reservation-form-group">
+                {{ form.cleaner.label_tag }}
+                {{ form.cleaner }}
+              </div>
+
+              <div class="reservation-form-group">
+                {{ form.customer.label_tag }}
+                {{ form.customer }}
+              </div>
+              <div class="reservation-form-group">
+                {{ form.vehicle.label_tag }}
+                {{ form.vehicle }}
+              </div>
+              <div class="reservation-form-group">
+                {{ form.service.label_tag }}
+                {{ form.service }}
+              </div>
+              <div class="reservation-form-group">
+                {{ form.price.label_tag }}
+                {{ form.price }}
+              </div>
+
+          </div>
+          {% comment %} <div class="reservation-form-group">
+              <label for="email">EMAIL</label>
+              <input type="email" id="email" class="reservation-input-email" placeholder="Enter your email">
+          </div>
+          <div class="reservation-form-group">
+              <label for="phone">PHONE</label>
+              <input type="tel" id="phone" class="reservation-input-tel" placeholder="Enter your phone number">
+          </div> {% endcomment %}
+          <button type="submit" class="reservation-book-now-button">Réserver maintennat</button>
+      </div>
+      
+  </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    $("#id_customer").change(function () {
+      var url = $("#bookingForm").attr("data-vehicles-url");  
+      var customerId = $(this).val();  
+
+      $.ajax({                      
+        url: url,                    
+        data: {
+          'customer': customerId       
+        },
+        success: function (data) {  
+          $("#id_vehicle").html(data);  
+        }
+      });
+
+    });
+  </script>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Historique des reservations</title>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="text-center mt-3">
+  
+    <div class="card-body">
+      <h5 class="card-title">Historique des reservations</h5>
+      <p class="card-text">Consultez ci-dessous les réservations enregistrées.</p>
+    
+      
+    </div>
+    
+  </div>
+
+  <div class="text-center mt-3">
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary nav-button back-button">
+        <i class="fas fa-arrow-left me-1"></i> Retour à l'accueil
+    </a>
+    <a href="{% url 'create-booking' %}" class="btn btn-outline-primary me-2 nav-button bg-primary text-light">
+        <i class="fas fa-list me-1"></i> Enrégistrer une nouvelle réservation
+    </a>
+</div>
+<div class="container mt-3">
+
+    {% if bookings %}
+      
+        {% include "bookings/recent_bookings.html" %}
+       
+        
+
+
+
+     {% else %}
+        <div class="alert alert-warning text-center">
+            Aucun réservation enregistré pour le moment.
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}
