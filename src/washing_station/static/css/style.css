@@ -1,0 +1,409 @@
+html,
+body {
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  height: 100%;
+  width: 100%; 
+  background: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+ 
+.wrapper {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.container-fostrap {
+  display: table-cell;
+  padding: 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+.fostrap-logo {
+  width: 80px;
+  margin-bottom:15px
+}
+h1.heading {
+  color: #fff;
+  font-size: 1.15em;
+  font-weight: 900;
+  margin: 0 0 0.5em;
+  color: #505050;
+}
+@media (min-width: 450px) {
+  h1.heading {
+    font-size: 3.55em;
+  }
+}
+@media (min-width: 760px) {
+  h1.heading {
+    font-size: 3.05em;
+  }
+}
+@media (min-width: 900px) {
+  h1.heading {
+    font-size: 3.25em;
+    margin: 0 0 0.3em;
+  }
+} 
+.card {
+  display: block; 
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); 
+    transition: box-shadow .25s; 
+}
+.card:hover {
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.img-card {
+  width: 100%;
+  height:200px;
+  border-top-left-radius:2px;
+  border-top-right-radius:2px;
+  display:block;
+    overflow: hidden;
+}
+.img-card img{
+  width: 100%;
+  height: 200px;
+  object-fit:cover; 
+  transition: all .25s ease;
+} 
+.card-content {
+  padding:15px;
+  text-align:left;
+}
+.card-title {
+  margin-top:0px;
+  font-weight: 700;
+  font-size: 1.65em;
+}
+.card-title a {
+  color: #000;
+  text-decoration: none !important;
+}
+.card-read-more {
+  border-top: 1px solid #D4D4D4;
+}
+.card-read-more a {
+  text-decoration: none !important;
+  padding:10px;
+  font-weight:600;
+  text-transform: uppercase
+}
+.bg-image-vertical {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+    }
+    
+    @media (min-width: 1025px) {
+    .h-custom-2 {
+    height: 100%;
+    }
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        transition: all 0.3s ease;
+      }
+      
+      .btn-success:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(40, 167, 69, 0.2);
+      }
+      
+      a {
+        text-decoration: none;
+      }
+      
+/* Annimer un backgroung*/
+
+/*Page de detail*/
+
+/* pour les formulaire*/
+
+/* Style général */
+#pupassure-form {
+  font-family: 'Arial', sans-serif;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+#pupassure-form h1 {
+  color: blue;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+/* Sections du formulaire */
+.form-section {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.section-title {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Champs de formulaire */
+.field-group {
+  margin-bottom: 1.5rem;
+}
+
+.field-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.field-group input[type="text"],
+.field-group input[type="date"],
+.field-group input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Options radio */
+.radio-options {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.radio-options.vertical {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+}
+
+.radio-option input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+/* Boutons */
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.nav-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.back-button {
+  background: #d90808;
+  color: white;
+}
+
+.next-button {
+  background: blue;
+  color: white;
+}
+
+.back-button:hover {
+  background: #e40a0ae8;
+}
+
+.next-button:hover {
+  background: #0c26d1e7;
+}
+
+/* Séparateur */
+.separator {
+  border: none;
+  border-top: 1px dashed #ddd;
+  margin: 1.5rem 0;
+}
+
+.btn-submit{
+  background-color: blue;
+  color: white;
+}
+
+/*Liste des voiture*/
+/*Formulaire de supresion*/
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Compte utilisateur*/
+
+
+/*creation d'une reservation*/
+.reservation-body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.reservation-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  overflow: hidden;
+  width: 800px;
+}
+
+.reservation-image-side {
+  background-image: url("booking.jpg");
+  background-size: cover;
+  background-position: center;
+  /* width: 40%; */
+}
+
+.reservation-form-side {
+  padding: 30px;
+  width: 60%;
+}
+
+.reservation-form-side h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.reservation-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.reservation-form-group {
+  margin-bottom: 15px;
+}
+
+.reservation-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+  /* color: white; */
+  font-weight:bold;
+  font-size: 1em;
+}
+
+.reservation-input,
+.reservation-input-email,
+.reservation-input-tel,
+.reservation-input-number {
+  width: calc(100% - 12px);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.reservation-input-with-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.reservation-input-with-controls input[type="number"] {
+  border: none;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+
+.reservation-control-button {
+  background-color: #eee;
+  color: #555;
+  border: none;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.reservation-control-button:hover {
+  background-color: #ddd;
+}
+
+.reservation-book-now-button {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.reservation-book-now-button:hover {
+  background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reservation-container {
+      flex-direction: column;
+      width: 90%;
+  }
+  .reservation-image-side {
+      width: 100%;
+      height: 200px;
+  }
+  .reservation-form-side {
+      width: 100%;
+      padding: 20px;
+  }
+  .reservation-form-grid {
+      grid-template-columns: 1fr;
+  }
+}
+

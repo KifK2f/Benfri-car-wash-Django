@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap-5.2.3-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% comment %} <style>
+      .reservation-image-side {
+        background-image: url("{% static '/images/booking.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        /* width: 40%; */
+      }
+    </style> {% endcomment %}
+    {% block title %}
+    {% endblock %}
+  </head>
+  <body>
+    {% comment %} Section pour les clients (Customer) {% endcomment %}
+      <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light shadow sticky-top">
+    <div class="container-xxl">
+      <a href="{% url 'home' %}" class="navbar-brand ">
+        <img  src="{% static 'images/logo-carwash.jpg' %}" alt="logo">
+      </a>
+
+      <!-- Toggle button for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse justify-content-end align-center " id="main-nav">
+        <ul class="navbar-nav">
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+          </li>
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'home' %}#nos-services">Services</a>
+          </li>
+          {% if request.user.customer %}
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'home-vehicle' %}">Mes véhicules</a>
+          </li>
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'home-booking' %}">Mes réservations</a>
+          </li>
+          {% endif %}
+          {% if request.user.employee.role == 0 %}
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'home-booking-receptionist' %}">Interface Accueil</a>
+          </li>   
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'account-employee' %}">Mon compte</a>
+          </li>      
+          {% elif request.user.employee.role == 1 %}
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'home-booking-cleaner' %}">Interface Lavage</a>
+          </li>   
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'account-employee' %}">Mon compte</a>
+          </li>    
+          {% else %}
+          <li class="nav-item mt-1">
+            <a class="nav-link" href="{% url 'account-customer' %}">Mon compte</a>
+          </li>   
+          {% endif %}
+          
+          {% if user.is_authenticated %}
+          <li class="nav-item mt-1">
+            <a href="{% url 'logout' %}" class="btn btn-primary btn-lg rounded-pill shadow-sm">Se déconnecter</a>
+          </li> 
+          {% if request.user.is_superuser %}
+          <li class="nav-item mt-1 mx-2">
+            <a href="{% url 'admin:index' %}" class="btn btn-primary btn-lg rounded-pill shadow-sm">Interface Admin</a>
+          </li>
+          {% endif %}
+          
+  
+  {% else %}
+  <li class="nav-item ms-2  d-md-inline mt-1">
+    <a class="btn btn-primary btn-lg rounded-pill shadow-sm" href="{% url 'login' %}">Se connecter</a>
+  </li>
+  <li class="nav-item ms-2  d-md-inline mt-1">
+    <a class="btn btn-primary btn-lg rounded-pill shadow-sm" href="{% url 'register' %}">Créer un compte</a>
+  </li>
+{% endif %} 
+
+         
+          
+        </ul>
+      </div>
+    </div>
+    
+  </nav>
+    
+  {% block content %}
+    
+  {% endblock %}
+  
+
+    <!-- footer -->
+     <!-- Footer 14 - Bootstrap Brain Component -->
+ <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 mt-4 col-lg-3 text-center text-sm-start">
+                <div class="information">
+                    <h6 class="footer-heading text-uppercase text-dark fw-bold">Liens rapides</h6>
+                    <ul class="list-unstyled footer-link mt-4">
+                        <li class="mb-1"><a href="{% url 'home' %}" class="text-dark text-decoration-none fw-semibold">Accueil</a></li>
+                        <li class="mb-1"><a href="{% url 'home' %}#nos-services" class="text-dark text-decoration-none fw-semibold">Services</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 mt-4 col-lg-3 text-center text-sm-start">
+               
+            </div>
+            <div class="col-sm-6 col-md-4 mt-4 col-lg-2 text-center text-sm-start">
+              
+          </div>
+            <div class="col-sm-6 col-md-6 mt-4 col-lg-4 text-center text-sm-start">
+              <div class="contact">
+                  <h6 class="footer-heading text-uppercase text-dark fw-bold">Contactez-nous</h6>
+                  <address class="mt-4 m-0 text-dark mb-1"><i class="bi bi-pin-map fw-semibold"></i> Agoè , Lomé-TOGO , BP : 160055</address>
+                  <a href="tel:+" class="text-dark mb-1 text-decoration-none d-block fw-semibold"><i class="bi bi-telephone"></i>  99093655</a>
+                  <a href="mailto:" class="text-dark mb-1 text-decoration-none d-block fw-semibold"><i class="bi bi-envelope"></i> xyzdemomail@gmail.com</a>
+                  <a href="" class="text-dark text-decoration-none fw-semibold"><i class="bi bi-skype"></i> xyzdemomail</a>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    {% comment %} Les logos {% endcomment %}
+    
+
+  </footer>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="{% static 'bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js' %}" ></script>
+    {% comment %} <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const customerSelect = document.getElementById('id_customer');
+          const vehicleSelect = document.getElementById('id_vehicle');
+  
+          customerSelect.addEventListener('change', function () {
+              const customerId = this.value;
+  
+              fetch(`/get_vehicles/${customerId}/`)
+                  .then(response => response.json())
+                  .then(data => {
+                      vehicleSelect.innerHTML = ''; // Clear current options
+  
+                      data.vehicles.forEach(vehicle => {
+                          const option = document.createElement('option');
+                          option.value = vehicle.id;
+                          option.textContent = vehicle.name;
+                          vehicleSelect.appendChild(option);
+                      });
+                  });
+          });
+      });
+  </script> {% endcomment %}
+  
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

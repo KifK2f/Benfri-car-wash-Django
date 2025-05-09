@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Accueil</title>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between bg-light p-2 border-bottom shadow-sm video ">
+    <div></div>
+    <div >
+        <h2 class="text-center">Bienvenue sur notre site M. ou Mme {{request.user.username}}</h2>
+    </div>
+
+    
+
+    <div class="d-flex align-items-center  bg-light p-2 border-bottom shadow-sm">
+        <img src="{% static 'images/avatar.jpeg' %}" alt="Avatar" class="rounded-circle me-2" width="40" height="40">
+        <div>
+          <div class="fw-bold">{{request.user.username}}</div>
+          <small class="text-muted">Connecté (e)</small>
+        </div>
+    </div>
+</div>
+
+{# Section HEro #}
+<section class="hero-section" style="background: linear-gradient(to right, #3498db, #2980b9); color: white; padding: 150px 20px; text-align: center;">
+    <div class="hero-content">
+      <h1>Votre véhicule toujours propre sans vous ruiner</h1>
+      <p>Une plateforme facile à utiliser pour des lavages de véhicule sans tracas.</p>
+      <a href="#nos-services" class="cta-button">
+      <button class="cta-button"  style="background-color: #2c3e50; color: white; padding: 15px 30px; border: none; cursor: pointer;">
+        Découvrir nos services
+      </button>
+        </a>
+    </div>
+  </section>
+  
+
+    {# Nos services #}
+    <section class="wrapper" id="nos-services">
+        <div class="container-fostrap">
+            <div>
+                <img src="{% static 'images/logo-carwash.jpg' %}" class="fostrap-logo"/>
+
+                <h1 class="heading">
+                    Nos services 
+                </h1>
+            </div>
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        
+                     {% include "services/service_list.html" with services=services %} 
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+{% endblock %}
