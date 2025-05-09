@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+  <title>{{ service.name }} | Nos Services</title>
+{% endblock %}
+
+{% block content %}
+<div class="text-center mt-4">
+  <a href="{% url 'home' %}" class="btn btn-outline-secondary nav-button back-button bg-success">
+      <i class="fas fa-arrow-left me-1"></i> Retour à l'accueil
+  </a>
+</div>    
+<div class="container my-5">
+  <div class="card shadow-sm p-4">
+    <div class="row g-4 align-items-start">
+      <!-- Image principale -->
+      <a class="img-card " href="#">
+        <img src="{{ service.image.url }}">
+    
+    </a>
+      <!-- Informations -->
+      <div class="col-md-6">
+        <h1 class="mb-3 text-primary">{{ service.name }}</h1>
+
+        <h5>Description :</h5>
+        <p>{{ service.description|safe }}</p>
+
+      </div>
+      <div class="col-md-6">
+
+        {% if service.name == 'Lavage extérieur' %}
+        <h3 class="mb-3 text-primary">Prix de lavage</h3>
+        <h4>Voiture : {{ service.base_price|intcomma }} FCFA</h4>  
+        <h4>Moto : {{ service.base_price|add:"-2000"|intcomma }} FCFA</h4>  
+        {% endif %}
+        {% if service.name != 'Lavage extérieur' %}
+        <h3 class="mb-3 text-primary">Prix de lavage</h3>
+        <h4>{{ service.base_price|intcomma }} FCFA</h4>  
+        {% endif %}
+
+        <h3 class="mb-3 text-primary">Nombre total de place</h3>
+        <h4>{{ service.available_place }} </h4>  
+     
+      </div>
+
+{% comment %} FIn de la premiere section {% endcomment %}
+{% comment %} 
+
+      <div class="col-md-6">
+        <h1 class="mb-3 text-primary">{{ service.name }}</h1>
+
+        <div class="mt-3 d-flex gap-2">
+          <button class="btn btn-outline-secondary">Ajouter un vehicule</button>
+          <button class="btn btn-primary">Réserver maintenant</button>
+        </div>
+
+        <hr>
+
+        <h5>Description :</h5>
+        <p>{{ service.description|safe }}</p>
+
+        <div class="row mt-3">
+          <div class="col-sm-6">
+            <h6>Points forts :</h6>
+            <ul class="small">
+              <li>Design moderne</li>
+              <li>Sécurité garantie</li>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <h6>Services :</h6>
+            <ul class="small">
+              <li>Retour sous 30 jours</li>
+              <li>Livraison à domicile</li>
+            </ul>
+          </div>
+        </div>
+
+        <form class="mt-4">
+          <label class="form-label">Vérifiez la disponibilité :</label>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Entrez votre code postal">
+            <button class="btn btn-danger" type="submit">Vérifier</button>
+          </div>
+        </form>
+      </div>
+    </div> {% endcomment %}
+    </div>
+</div>
+{% endblock %}
