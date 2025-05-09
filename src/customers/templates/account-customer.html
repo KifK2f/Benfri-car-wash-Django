@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% if customers %}
+{% for customer in customers %}
+
+<div class="min-vh-100 d-flex flex-column align-items-center justify-content-center bg-light">
+    <div class="text-center mt-4">
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary nav-button back-button bg-success">
+            <i class="fas fa-arrow-left me-1"></i> Retour à l'accueil
+        </a>
+        <a href="{% url 'edit-customer' slug=customer.slug %}" class="btn btn-outline-secondary nav-button back-button bg-warning">
+            <i class="fas fa-arrow-left me-1"></i> Modifier compte client
+        </a>
+        <a href="{% url 'delete-customer' slug=customer.slug %}" class="btn btn-outline-secondary nav-button back-button">
+            <i class="fas fa-arrow-left me-1"></i> Supprimer compte Client
+        </a>
+    </div>    
+    <div class="container">
+      <br> <br>
+    </div>
+    <div class="container w-50">
+      <div class="card shadow-lg border-0 p-4 text-center rounded-4 position-relative">
+ 
+        <div class="position-absolute top-0 start-50 translate-middle mt-4">
+          {% if customer.profile_picture %}
+          <img src="{{ customer.profile_picture.url }}" alt="Profile"
+            class="rounded-circle border border-white shadow" width="100" height="100">
+        {% else %}
+          <img src="{% static 'images/avatar.jpeg' %}" alt="Profile"
+            class="rounded-circle border border-white shadow" width="100" height="100">
+            {% endif %}
+          
+        </div>
+  
+        <div class="pt-5 mt-5">
+          <h4 class="mb-1"> {{ customer.last_name }} {{ customer.first_name }}</h4>
+          <p class="text-muted small mb-2">Sexe : {{ customer.get_sex_display }}</p>
+          <p class="text-muted small mb-2">Email : {{ customer.email }}</p>
+          <p class="text-muted small mb-2">Date de naissance : {{ customer.birth_date }}</p>
+          <p class="text-muted small mb-2">Numéro de téléphone : {{ customer.phone_number }}</p>
+          <p class="text-muted small mb-2">Adresse : {{ customer.address }}</p>
+          <p class="text-muted small mb-2">Dernière mise à jour : {{ customer.last_updated }}</p>
+          <p class="text-muted small mb-2">Date de création : {{ customer.created_on }}</p>
+          {% comment %} <p class="text-muted small mb-2">Nbre de vehicule : {{ customer.total_vehicle }}</p> {% endcomment %}
+            
+          <div class="d-flex justify-content-around mb-4 text-dark">
+            <div>
+              <span class="badge bg-success p-2 rounded-pill">
+                {{ customer.loyality_point }} Point(s)
+              </span><br>
+              <small class="text-muted">Point(s) de fidélité</small>
+            </div>
+            {% if vehicles %}
+              <div><strong>{{vehicles|length}}</strong><br><small>Véhicule(s)</small></div>
+
+            {% else %}
+              <div><strong>0</strong><br><small>Véhicule(s)</small></div>
+            {% endif %}
+            {% if bookings %}
+              <div><strong>{{bookings|length}}</strong><br><small>Réservation(s)</small></div>
+
+            {% else %}
+              <div><strong>0</strong><br><small>Réservation(s)</small></div>
+            {% endif %}
+          </div>
+          
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  
+  <div class="text-center mt-4">
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary nav-button back-button">
+        <i class="fas fa-arrow-left me-1"></i> Retour à l'accueil
+    </a>
+    <a href="{% url 'create-customer' %}" class="btn btn-outline-primary me-2 nav-button bg-primary text-light">
+        <i class="fas fa-list me-1"></i> Créer un compte client
+    </a>
+</div>
+  <div class="alert alert-warning text-center mt-4">
+      Aucun compte client enregistrée pour le moment.
+  </div>
+{% endif %}
+{% endblock %}

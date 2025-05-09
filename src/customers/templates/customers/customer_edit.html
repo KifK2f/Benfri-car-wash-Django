@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Editer compte client</title>
+{% endblock %}
+
+
+{% block content %}
+<div id="pupassure-form">
+  <h1>Editer votre compte client</h1>
+  <p class="subtitle">Modifier les informations de votre compte client</p>
+  
+  <form method="post" enctype="multipart/form-data">
+    {#enctype="multipart/form-data"  => pour permettre l'envoi de fichiers (uploader)#}
+    {% csrf_token %}
+    
+    <div class="form-section">
+      <div class="field-group">
+        {{ form.last_name.label_tag }}
+        {{ form.last_name }}
+      </div>
+      <div class="field-group">
+        {{ form.first_name.label_tag }}
+        {{ form.first_name }}
+      </div>
+      <div class="field-group">
+        {{ form.sex.label_tag }}
+        {{ form.sex }}
+      </div>
+      <div class="field-group form-control">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+      </div>
+    
+      <div class="field-group">
+        {{ form.birth_date.label_tag }}
+        {{ form.birth_date }}
+      </div>
+      <div class="field-group">
+        {{ form.phone_number.label_tag }}
+        {{ form.phone_number }}
+      </div>
+      <div class="field-group">
+        {{ form.address.label_tag }}
+        {{ form.address }}
+      </div>
+
+    </div>
+        
+    <hr class="separator">
+    
+    <div class="form-section">
+      <h2 class="section-title">Veuillez charger votre photo de profil (Facultative)</h2>
+      <div class="field-group">
+        {{ form.profile_picture.label_tag }}
+        {{ form.profile_picture }}
+      </div>
+    </div>
+    
+    <div class="form-navigation">
+        <a href="{% url 'account-customer' %}">
+      <button type="button" class="nav-button back-button">Retour</button>
+      </a>
+      <button type="submit" class="nav-button next-button">Editer</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
