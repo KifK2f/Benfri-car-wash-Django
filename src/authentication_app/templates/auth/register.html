@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+<title>Création de compte</title>
+{% endblock %}
+
+{% block content %}
+
+<section class="vh-100" style="background: linear-gradient(to right, #dfe9f3, #ffffff);">
+    <div class="container-fluid">
+      <div class="row">
+          
+          <div class="col-sm-6 d-none d-sm-block px-0">
+              <img src="{% static 'images/register_image.jpg' %}"
+              alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+            </div>
+            <div class="col-sm-6 text-black d-flex flex-column justify-content-center align-items-center">
+      
+              <div class="text-center mb-4">
+                <img src="{% static 'images/logo-carwash.jpg' %}" class="img-fluid" style="max-height: 100px;" />
+              </div>
+      
+              <div class="w-75">
+                <form method="POST", action="{% url 'register' %}">
+                    {% csrf_token %}
+                  <h3 class="fw-bold mb-4 text-center" style="letter-spacing: 1px;">Créer un compte</h3>
+      
+                  <div class="form-outline mb-4">
+                    <label for="{{ form.username.id_for_label }}">Nom d'utilisateur:</label>
+                    <input type="text" id="{{ form.username.id }}" name="{{ form.username.name }}" class="form-control" value="{{ form.username.value  }}" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Entrer un nom d'utilisateur" />
+                    {% if form.username.errors %}
+                    <span class="text-danger">{{ form.username.errors }}</span>
+                    {% endif %}
+                  </div>
+      
+                  <div class="form-outline mb-4">
+                    <label for="{{ form.password1.id_for_label }}">Mot de passe:</label>
+                    <input type="password" id="{{ form.password1.id }}" name="{{ form.password1.name }}" class="form-control" value="{{ form.password1.value  }}" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Entrer un mot de passe" />
+                    {% if form.password1.errors %}
+                    <span class="text-danger">{{ form.password1.errors }}</span>
+                    {% endif %}
+                  </div>
+      
+                  <div class="form-outline mb-4">
+                    <label for="{{ form.password2.id_for_label }}">Confirmer le mot de passe:</label>
+                    <input type="password" id="{{ form.password2.id }}" name="{{ form.password2.name }}" class="form-control" value="{{ form.password2.value  }}" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Confirmer le mot de passe" />
+                    {% if form.password2.errors %}
+                    <span class="text-danger">{{ form.password2.errors }}</span>
+                    {% endif %}
+                  </div>
+      
+     
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">Créer un compte</button>
+                  </div>
+      
+                  <p class="text-center mt-4">Déjà inscrit ? 
+                    <a href="{% url 'login' %}" class="link-primary fw-bold">Se connecter</a>
+                  </p>
+                </form>
+              </div>
+      
+            </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
